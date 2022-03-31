@@ -32,13 +32,17 @@ function readLine() {
 function timeConversion(s) {
     // Write your code here
     var hour, types = (/(\d+):(\d+):(\d+)([ap]m)/i).exec(s) //regex
-    //console.log(hour, types[1],types[2],types[3],types[4])
     hour =parseInt(types[0],10) 
     
     if (hour < 12 && types[4]==="PM"){
         hour += 12
     }
-    return hour.toString() + ":" + types[2] + ":" + types[3]
+    
+    if (hour === 12 && types[4]==="AM"){
+        hour =  0
+    }
+
+    return ("00" + hour).slice(-2) + ":" + types[2] + ":" + types[3]
 }
 
 function main() {
